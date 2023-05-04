@@ -1,0 +1,103 @@
+<div class="container">
+
+  <h1 class="text-center mt-2">CRUD OPERATIONS</h1>
+  <div class="alert alert-info clearfix">
+    This module demonstrates basic CRUD operations with Angular
+    <button type="button" class="btn btn-primary  float-end" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      (click)="resetEditModel();">
+      Add New Employee
+    </button>
+  </div>
+  <div class="table-responsive-lg mt-2">
+    <h3 class="text-center">Employees List</h3>
+    <table class="table table-striped text-center table-responsive">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Country</th>
+          <th>Position</th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employeeList">
+          <td>{{emp.firstName}}</td>
+          <td>{{emp.lastName}}</td>
+          <td>{{emp.email}}</td>
+          <td>{{emp.city}}</td>
+          <td>{{emp.country}}</td>
+          <td>{{emp.position}}</td>
+          <td> {{ emp.salary | currency:'EUR' }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              (click)="edit(emp)">Edit</button>
+            <button class="btn btn-danger mx-2 btn-sm" (click)="delete(emp)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="text-center" id="exampleModalLabel">Add New Employee</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+          <div class="form-floating mb-1">
+            <input type="email" class="form-control" formControlName="firstName" id="floatingInput"
+              placeholder="name@example.com">
+            <label for="floatingInput">First Name</label>
+          </div>
+          <div class="form-floating mb-1">
+            <input type="email" class="form-control" formControlName="lastName" id="floatingInput"
+              placeholder="name@example.com">
+            <label for="floatingInput">Last Name</label>
+          </div>
+          <div class="form-floating mb-1">
+            <input type="email" class="form-control" formControlName="email" id="floatingInput"
+              placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-1">
+            <input type="email" class="form-control" formControlName="city" id="floatingInput"
+              placeholder="name@example.com">
+            <label for="floatingInput">City</label>
+          </div>
+          <div class="form-floating mb-1">
+            <input type="email" class="form-control" id="floatingInput" formControlName="country"
+              placeholder="name@example.com">
+            <label for="floatingInput">Country</label>
+          </div>
+          <div class="form-floating mb-1">
+            <input type="email" class="form-control" id="floatingInput" formControlName="position"
+              placeholder="name@example.com">
+            <label for="floatingInput">Position</label>
+          </div>
+          <div class="form-floating mb-1">
+            <input type="email" class="form-control" id="floatingInput" formControlName="salary"
+              placeholder="name@example.com">
+            <label for="floatingInput">Salary</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel">Close</button>
+        <button *ngIf="editModel.id==0" type="button" class="btn btn-primary" (click)="addEmployee()">Save
+          changes</button>
+        <button *ngIf="editModel.id>0" type="button" class="btn btn-warning" (click)="updateEmployee()">Update
+          changes</button>
+      </div>
+    </div>
+  </div>
+</div>
