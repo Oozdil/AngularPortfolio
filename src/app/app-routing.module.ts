@@ -10,19 +10,30 @@ import { ChatComponent } from './frontend/components/chat/chat.component';
 import { EcommerceComponent } from './frontend/components/ecommerce/ecommerce.component';
 import { CrudComponent } from './frontend/components/crud/crud.component';
 import { SnakeComponent } from './frontend/components/snake/snake.component';
+import { ShophomeComponent } from './frontend/components/ecommerce/components/shophome/shophome.component';
+import { ProductsComponent } from './frontend/components/ecommerce/components/products/products.component';
+import { CartComponent } from './frontend/components/ecommerce/components/cart/cart.component';
 
 const routes: Routes = [
   {
     path: "", component: FrontendComponent,
     children: [
-      {path:"",component:HomeComponent},
-      {path:"todolist",component:TodolistComponent},
-      {path:"crud",component:CrudComponent},
-      {path:"calculator",component:CalculatorComponent},
-      {path:"tictactoe",component:TictactoeComponent},
-      {path:"chat",component:ChatComponent},
-      {path:"snake",component:SnakeComponent},
-      {path:"ecommerce",component:EcommerceComponent},
+      { path: "", component: HomeComponent },
+      { path: "todolist", component: TodolistComponent },
+      { path: "crud", component: CrudComponent },
+      { path: "calculator", component: CalculatorComponent },
+      { path: "tictactoe", component: TictactoeComponent },
+      { path: "chat", component: ChatComponent },
+      { path: "snake", component: SnakeComponent },
+      {
+        path: "ecommerce", component: EcommerceComponent,
+        children: [
+        {  path:"home",component:ShophomeComponent},
+        {  path:"",component:ShophomeComponent},
+        {  path:"products",component:ProductsComponent},
+        {  path:"cart",component:CartComponent},
+        ]
+      },
     ],
   },
   { path: "admin", component: BackendComponent },

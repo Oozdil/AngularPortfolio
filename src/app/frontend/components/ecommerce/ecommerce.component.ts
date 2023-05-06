@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./ecommerce.component.css']
 })
 export class EcommerceComponent {
-
+  
 }
