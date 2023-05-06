@@ -1,1 +1,17 @@
-<h1 class="text-center">TIC TAC TOE</h1>
+<div class="container-fluid">
+    <h1 class="text-center mt-2">TIC TAC TOE ( Turn : <span>{{turn}} </span> ) </h1>
+    <div id="board" class="mt-4">
+        <div *ngFor="let tile of tiles;" [class]="tile.classList" (click)="tileClick($event);" [id]="tile.name">
+            {{tile.innerText}}
+        </div>
+        
+        <div id="strike" [class]="strikeClassList"></div>
+    
+    </div>
+    <div id="game-over-area" *ngIf="isGameOver" >
+        <h2 id="game-over-text" >Winner is {{winnerText}}</h2>
+        
+        <button id="play-again" (click)="startNewGame()" >Play Again</button>
+    </div>
+</div>
+

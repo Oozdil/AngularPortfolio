@@ -7,9 +7,9 @@ import { HomeComponent } from './frontend/components/home/home.component';
 import { CalculatorComponent } from './frontend/components/calculator/calculator.component';
 import { TictactoeComponent } from './frontend/components/tictactoe/tictactoe.component';
 import { ChatComponent } from './frontend/components/chat/chat.component';
-import { SnakeComponent } from './frontend/components/snake/snake.component';
 import { EcommerceComponent } from './frontend/components/ecommerce/ecommerce.component';
 import { CrudComponent } from './frontend/components/crud/crud.component';
+import { SnakeComponent } from './frontend/components/snake/snake.component';
 
 const routes: Routes = [
   {

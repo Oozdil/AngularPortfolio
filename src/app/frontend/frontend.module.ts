@@ -9,6 +9,11 @@ import { HomeModule } from './components/home/home.module';
 import { CalculatorComponent } from './components/calculator/calculator.component';
 import { CrudModule } from './components/crud/crud.module';
 import { FormsModule } from '@angular/forms';
+import { TodolistModule } from './components/todolist/todolist.module';
+import { TictactoeModule } from './components/tictactoe/tictactoe.module';
+import { SnakeModule } from './components/snake/snake.module';
+import { ChatModule } from './components/chat/chat.module';
+import { EcommerceModule } from './components/ecommerce/ecommerce.module';
 
 
 
@@ -18,15 +23,19 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     ContentComponent,
-    CalculatorComponent,
-
+    
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     HomeModule,
-    CrudModule,   
-    FormsModule 
+    CrudModule,
+    FormsModule,
+    TodolistModule,
+    TictactoeModule,
+    SnakeModule,
+    ChatModule,
+    EcommerceModule
   ]
 })
 export class FrontendModule { }

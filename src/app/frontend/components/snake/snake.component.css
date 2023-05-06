@@ -1,0 +1,20 @@
+#board {
+    box-shadow: black 20px 10px 50px;
+    width: 400px;
+    height: 400px;        
+}
+
+
+
+.container-fluid {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px;
+    margin: 0px;
+    height: 85vh;
+    background: linear-gradient(0deg,
+            rgb(97, 98, 99) 0%,
+            rgba(0, 0, 0, 0) 100%);
+
+}
