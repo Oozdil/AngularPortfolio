@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">PRODUCT NAME</th>
+                <th scope="col">CATEGORY NAME</th>
+                <th scope="col">PRICE</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">IMAGE</th>
+                <th scope="col"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        (click)="resetEditModel()">ADD NEW </button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of products">
+                <td>{{p.id}}</td>
+                <td>{{p.productName}}</td>
+                <td>{{p.categoryName}}</td>
+                <td>{{p.price|currency}}</td>
+                <td>{{p.description}}</td>
+                <td><img [src]="p.imageUrl" width="30" /></td>
+                <td>
+                    <button class="btn btn-warning btn-sm me-2" (click)="deleteProduct(p)">DEL</button>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        (click)="editProduct(p)">UPDATE</button>
+
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <span *ngIf="editProductModel.id==0">Add New Product</span>
+                    <span *ngIf="editProductModel.id>0">Update <b>{{editProductModel.productName}}</b></span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="mb-1">
+                        <label for="productName" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" formControlName="productName" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-1">
+                        <label for="categoryName" class="form-label">Category Name</label>
+                        <input type="text" class="form-control" formControlName="categoryName" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-1">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="text" class="form-control" formControlName="price" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-1">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" formControlName="description" aria-describedby="emailHelp">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

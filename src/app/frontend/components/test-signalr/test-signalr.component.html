@@ -1,0 +1,40 @@
+<div class="container">
+
+    <div class=" row mt-3">
+        <div class="col-sm-4  bg-dark text-light pb-3">
+            <form [formGroup]="formValue" #loginForm="ngForm">
+                <div class="mb-3 pt-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control text-dark" required formControlName="InputEmail" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control text-dark" required="" formControlName="InputPassword">
+                </div>
+              </form>
+              <button class="btn btn-primary" [disabled]="!loginForm.valid" (click)="Login()">Login</button>
+              <button class="btn btn-danger ms-2" (click)="Logout()">Logout</button>
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4"></div>
+    </div>
+    
+
+
+    <table class="table table-striped mt-5">
+    <thead class="text-center">
+        <th class="col">ID</th>
+        <th class="col">CONNECTION ID</th>
+        <th class="col">USERNAME</th>
+        <th class="col">PASSWORD</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let u of users;">
+            <td>{{u.id}}</td>
+            <td>{{u.connectionId}}</td>
+            <td>{{u.userName}}</td>
+            <td>{{u.password}}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>

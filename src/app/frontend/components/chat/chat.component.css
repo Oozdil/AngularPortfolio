@@ -1,8 +1,17 @@
-.contacts-container{
+.contacts-container {
     background-color: aliceblue;
     height: 80vh;
 }
-.chat-container{
+
+.chat-container {
     background-color: rgb(101, 163, 218);
     height: 80vh;
+}
+
+.contact:hover {
+    background-color: #a1a1a1;
+    cursor: pointer;
+}
+h1{
+    background-color: #d1d1d1;
 }

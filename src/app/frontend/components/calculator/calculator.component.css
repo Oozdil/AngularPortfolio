@@ -4,6 +4,7 @@
     border-radius: 5px;
     width: 80%;
     margin: auto;
+    min-width: 350px;
   }
   
   .calculator-screen {

@@ -10,7 +10,9 @@
   </div>
   <div class="table-responsive-lg mt-2">
     <h3 class="text-center">Employees List</h3>
-    <table class="table table-striped text-center table-responsive">
+    <div *ngIf="employeeList.length==0"><h1 class="text-center">No record found! Please add new employee...</h1></div>
+
+    <table class="table table-striped text-center table-responsive" *ngIf="employeeList.length>0">
       <thead>
         <tr>
           <th>First Name</th>
@@ -30,12 +32,13 @@
           <td>{{emp.email}}</td>
           <td>{{emp.city}}</td>
           <td>{{emp.country}}</td>
-          <td>{{emp.position}}</td>
+          <td>{{emp.id}}</td>
           <td> {{ emp.salary | currency:'EUR' }}</td>
           <td>
             <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
               (click)="edit(emp)">Edit</button>
-            <button class="btn btn-danger mx-2 btn-sm" (click)="delete(emp)">Delete</button>
+            <button class="btn btn-danger mx-2 btn-sm" (click)="edit(emp)" data-bs-toggle="modal"
+              data-bs-target="#confirmModal">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -53,50 +56,70 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="formValue">
+        <form [formGroup]="formValue" #editForm="ngForm">
           <div class="form-floating mb-1">
             <input type="email" class="form-control" formControlName="firstName" id="floatingInput"
-              placeholder="name@example.com">
+              placeholder="name@example.com" required>
             <label for="floatingInput">First Name</label>
           </div>
           <div class="form-floating mb-1">
             <input type="email" class="form-control" formControlName="lastName" id="floatingInput"
-              placeholder="name@example.com">
+              placeholder="name@example.com" required>
             <label for="floatingInput">Last Name</label>
           </div>
           <div class="form-floating mb-1">
             <input type="email" class="form-control" formControlName="email" id="floatingInput"
-              placeholder="name@example.com">
+              placeholder="name@example.com" required>
             <label for="floatingInput">Email address</label>
           </div>
           <div class="form-floating mb-1">
             <input type="email" class="form-control" formControlName="city" id="floatingInput"
-              placeholder="name@example.com">
+              placeholder="name@example.com" required>
             <label for="floatingInput">City</label>
           </div>
           <div class="form-floating mb-1">
             <input type="email" class="form-control" id="floatingInput" formControlName="country"
-              placeholder="name@example.com">
+              placeholder="name@example.com" required>
             <label for="floatingInput">Country</label>
           </div>
           <div class="form-floating mb-1">
             <input type="email" class="form-control" id="floatingInput" formControlName="position"
-              placeholder="name@example.com">
+              placeholder="name@example.com" required>
             <label for="floatingInput">Position</label>
           </div>
           <div class="form-floating mb-1">
             <input type="email" class="form-control" id="floatingInput" formControlName="salary"
-              placeholder="name@example.com">
+              placeholder="name@example.com" required>
             <label for="floatingInput">Salary</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel">Close</button>
-        <button *ngIf="editModel.id==0" type="button" class="btn btn-primary" (click)="addEmployee()">Save
+        <button *ngIf="modelToEdit.id==0" type="button" class="btn btn-primary" 
+        (click)="addEmployee()" [disabled]="!editForm.valid">Save
           changes</button>
-        <button *ngIf="editModel.id>0" type="button" class="btn btn-warning" (click)="updateEmployee()">Update
+        <button *ngIf="modelToEdit.id>0" type="button" class="btn btn-warning" (click)="updateEmployee()">Update
           changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Operation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">Do you want to delte "
+        {{modelToEdit.firstName}} {{modelToEdit.lastName}}"
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="confirmCancel" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="delete(modelToEdit)">Delete</button>
       </div>
     </div>
   </div>

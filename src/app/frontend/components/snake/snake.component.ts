@@ -20,6 +20,8 @@ export class SnakeComponent {
     this.ctx = this.canvas.nativeElement.getContext('2d');
     this.image.src = "./assets/space.png";
     this.resetGame();
+    this.gameOver = true;
+    this.Initdraw();
     setInterval(() => this.tick(), 100);
   }
   private resetGame() {
@@ -86,6 +88,18 @@ export class SnakeComponent {
       x: Math.floor(Math.random() * this.canvas.nativeElement.width / 10) * 10,
       y: Math.floor(Math.random() * this.canvas.nativeElement.height / 10) * 10
     };
+  }
+  private Initdraw() {
+    this.ctx.fillRect(0, 0, 400, 400);
+
+    this.ctx.font = '20px Arial';
+
+    this.ctx.fillStyle = 'white';
+    this.ctx.fillText(`Score: ${this.score}`, 10, 25);
+
+    this.ctx.fillText('Welcome', 150, this.canvas.nativeElement.height / 2);
+    this.ctx.fillText('Please tab space to play', 80, this.canvas.nativeElement.height / 2 + 50);
+
   }
   private draw() {
     this.ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);

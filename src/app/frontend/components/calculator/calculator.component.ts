@@ -25,7 +25,7 @@ export class CalculatorComponent implements AfterViewInit {
     '=': (firstOperand, secondOperand) => secondOperand
   };
   display: string = "";
-  displayMini: string = "asdfasdf";
+  displayMini: string = "";
   displayfontSize = 4;
 
   constructor(private elementRef: ElementRef) { }
@@ -35,10 +35,12 @@ export class CalculatorComponent implements AfterViewInit {
       btn.addEventListener('click',
         (event) => {
           const { target } = event;
+          this.displayMini+=target.value;
 
           if (target.classList.contains('operator')) {
             this.handleOperator(target.value);
             this.updateDisplay();
+
             return;
           }
 
@@ -74,6 +76,7 @@ export class CalculatorComponent implements AfterViewInit {
     if (waitingForSecondOperand === true) {
       this.calculator.displayValue = digit;
       this.calculator.waitingForSecondOperand = false;
+
     } else {
       this.calculator.displayValue = displayValue === '0' ? digit : displayValue + digit;
     }
@@ -83,6 +86,7 @@ export class CalculatorComponent implements AfterViewInit {
     if (!this.calculator.displayValue.includes(dot)) {
       // Append the decimal point
       this.calculator.displayValue += dot;
+
     }
   }
 
@@ -92,6 +96,7 @@ export class CalculatorComponent implements AfterViewInit {
     this.calculator.waitingForSecondOperand = false;
     this.calculator.operator = null;
     this.displayfontSize=4;
+    this.displayMini="";
   }
   handleOperator(nextOperator) {
     const { firstOperand, displayValue, operator } = this.calculator
@@ -110,6 +115,10 @@ export class CalculatorComponent implements AfterViewInit {
 
       this.calculator.displayValue = String(result);
       this.calculator.firstOperand = result;
+
+      this.displayMini+= String(result);
+      this.displayMini="("+this.displayMini+")";
+
     }
 
     this.calculator.waitingForSecondOperand = true;
