@@ -12,9 +12,7 @@ import { TodolistModule } from './components/todolist/todolist.module';
 import { TictactoeModule } from './components/tictactoe/tictactoe.module';
 import { SnakeModule } from './components/snake/snake.module';
 import { ChatModule } from './components/chat/chat.module';
-import { EcommerceModule } from './components/ecommerce/ecommerce.module';
-import { TestComponent } from './components/test/test.component';
-import { TestSignalrComponent } from './components/test-signalr/test-signalr.component';
+
 
 
 
@@ -23,10 +21,7 @@ import { TestSignalrComponent } from './components/test-signalr/test-signalr.com
     FrontendComponent,
     HeaderComponent,
     FooterComponent,
-    ContentComponent,
-    TestComponent,
-    TestSignalrComponent,
-    
+    ContentComponent,    
   ],
   imports: [
     CommonModule,
@@ -38,7 +33,6 @@ import { TestSignalrComponent } from './components/test-signalr/test-signalr.com
     TictactoeModule,
     SnakeModule,
     ChatModule,
-    EcommerceModule,
     ReactiveFormsModule
 
   ]

@@ -22,7 +22,9 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot()
     
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
